@@ -35,7 +35,8 @@
   </nav>
 
   <!-- ===== HERO ===== -->
-  <section class="hero">
+  <section class="hero" style="position:relative;">
+    <canvas id="flagCanvas" width="120" height="78" style="position:absolute; top: 210px; left: calc(50% + 125px); image-rendering: pixelated; z-index:2;"></canvas>
     <div class="container">
       <div class="hero__photo-wrap">
         <img id="headshot" src="images/headshot.jpg" alt="Jared Allyn"
@@ -53,6 +54,7 @@
         <a href="projects.html" class="btn btn-primary">View My Work</a>
         <a href="contact.html" class="btn btn-outline">Get In Touch</a>
       </div>
+
     </div>
   </section>
 
@@ -76,5 +78,58 @@
   </footer>
 
   <script src="scripts/main.js"></script>
+  <script>
+    (function () {
+      var canvas = document.getElementById('flagCanvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+
+      // 40 x 26 native pixels at 3x = 120 x 78
+      var SCALE = 3;
+      var FW = 40, FH = 26;
+
+      var RED = '#CC2936', WHT = '#FFFFFF', BLU = '#002868';
+
+      // Build stripes — each stripe exactly 2px
+      var px = [];
+      for (var y = 0; y < FH; y++) {
+        px[y] = [];
+        var stripeIdx = Math.floor(y / 2);
+        for (var x = 0; x < FW; x++) {
+          // Canton: top 7 stripes (14px tall) x 16px wide
+          var inCanton = x < 16 && y < 14;
+          px[y][x] = inCanton ? BLU : (stripeIdx % 2 === 0 ? RED : WHT);
+        }
+      }
+
+      // US flag star pattern: alternating rows of 6 and 5 stars
+      // Canton is 16 wide x 14 tall — place stars as single pixels
+      // 7 star rows spaced 2px apart
+      var sixStarX  = [1, 3, 6, 8, 11, 13]; // 6 stars
+      var fiveStarX = [2, 5, 7, 10, 12];    // 5 stars
+      var starRows  = [1, 3, 5, 7, 9, 11, 13];
+      starRows.forEach(function (sy, i) {
+        var xs = i % 2 === 0 ? sixStarX : fiveStarX;
+        xs.forEach(function (sx) {
+          if (sx < 16 && sy < 14) px[sy][sx] = WHT;
+        });
+      });
+
+      var time = 0;
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var x = 0; x < FW; x++) {
+          var wave = Math.sin(x * 0.38 + time) * 1.2;
+          for (var y = 0; y < FH; y++) {
+            ctx.fillStyle = px[y][x];
+            ctx.fillRect(x * SCALE, Math.round(y * SCALE + wave * SCALE), SCALE, SCALE);
+          }
+        }
+        time += 0.03;
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+  </script>
 </body>
 </html>
