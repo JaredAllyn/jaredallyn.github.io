@@ -25,6 +25,24 @@ addBounceToElements('.navbar__links a');
 addBounceToElements('.navbar__mobile a');
 addBounceToElements('.contact-link-item');
 
+/* ---- Copy email to clipboard ---- */
+(function setupEmailCopy() {
+  var emailLink = document.querySelector('a[href="mailto:allynkjared@gmail.com"]');
+  if (!emailLink) return;
+
+  emailLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText('allynkjared@gmail.com').then(function() {
+      var label = emailLink.querySelector('.contact-link-label');
+      var original = label.childNodes[0].nodeValue;
+      label.childNodes[0].nodeValue = 'Copied to clipboard!';
+      setTimeout(function() {
+        label.childNodes[0].nodeValue = original;
+      }, 2000);
+    });
+  });
+})();
+
 /* ---- Active nav link highlighting ---- */
 (function highlightActiveNav() {
   var path = window.location.pathname;
