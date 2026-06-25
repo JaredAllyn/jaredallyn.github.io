@@ -52,6 +52,7 @@ body {
     radial-gradient(ellipse 40% 55%  at 75% 50%,  #121212 0%, transparent 60%),
     radial-gradient(ellipse 50% 35%  at 25% 45%,  #2e2e2e 0%, transparent 58%),
     #1C1C1C;
+  background-attachment: fixed;
   color: var(--near-black);
   line-height: 1.7;
   font-size: 1rem;
