@@ -285,20 +285,22 @@ footer a:hover { opacity: 0.8; }
 /* Paint-splatter body background (home page only) */
 body.home {
   background:
-    /* orange splatters */
-    radial-gradient(ellipse 220px 110px at 8% 18%,  rgba(224,123,57,0.80) 0%, rgba(224,123,57,0.75) 40%, transparent 55%),
-    radial-gradient(ellipse 90px 180px  at 22% 12%,  rgba(200,90,30,0.70) 0%, rgba(200,90,30,0.60) 38%, transparent 52%),
-    radial-gradient(ellipse 160px 80px  at 88% 72%,  rgba(224,123,57,0.78) 0%, rgba(224,123,57,0.65) 42%, transparent 55%),
-    radial-gradient(ellipse 60px 130px  at 78% 80%,  rgba(200,90,30,0.70) 0%, rgba(200,90,30,0.55) 40%, transparent 53%),
-    radial-gradient(ellipse 100px 50px  at 55% 90%,  rgba(224,123,57,0.65) 0%, rgba(224,123,57,0.50) 38%, transparent 50%),
-    radial-gradient(ellipse 40px 90px   at 3%  60%,  rgba(224,123,57,0.60) 0%, rgba(224,123,57,0.45) 38%, transparent 50%),
-    /* blue splatters */
-    radial-gradient(ellipse 240px 130px at 82% 22%,  rgba(80,130,220,0.80) 0%, rgba(80,130,220,0.70) 40%, transparent 55%),
-    radial-gradient(ellipse 100px 200px at 68% 12%,  rgba(50,100,200,0.70) 0%, rgba(50,100,200,0.58) 38%, transparent 52%),
-    radial-gradient(ellipse 170px 90px  at 18% 78%,  rgba(80,130,220,0.78) 0%, rgba(80,130,220,0.62) 42%, transparent 55%),
-    radial-gradient(ellipse 70px 140px  at 30% 85%,  rgba(50,100,200,0.68) 0%, rgba(50,100,200,0.52) 40%, transparent 53%),
-    radial-gradient(ellipse 50px 100px  at 97% 45%,  rgba(80,130,220,0.65) 0%, rgba(80,130,220,0.48) 38%, transparent 50%),
-    radial-gradient(ellipse 120px 55px  at 45% 5%,   rgba(50,100,200,0.62) 0%, rgba(50,100,200,0.46) 38%, transparent 50%),
+    /* orange blobs — hard edges like real paint */
+    radial-gradient(ellipse 190px 95px  at 6%  14%,  rgba(224,123,57,0.92) 0%, rgba(224,123,57,0.92) 55%, transparent 56%),
+    radial-gradient(ellipse 70px 155px  at 17% 9%,   rgba(200,90,30,0.85)  0%, rgba(200,90,30,0.85)  52%, transparent 53%),
+    radial-gradient(ellipse 130px 65px  at 63% 82%,  rgba(224,123,57,0.90) 0%, rgba(224,123,57,0.90) 54%, transparent 55%),
+    radial-gradient(ellipse 55px 110px  at 74% 91%,  rgba(200,90,30,0.82)  0%, rgba(200,90,30,0.82)  50%, transparent 51%),
+    radial-gradient(ellipse 95px 45px   at 42% 96%,  rgba(224,123,57,0.80) 0%, rgba(224,123,57,0.80) 50%, transparent 51%),
+    radial-gradient(ellipse 35px 80px   at 91% 67%,  rgba(224,123,57,0.78) 0%, rgba(224,123,57,0.78) 50%, transparent 51%),
+    radial-gradient(ellipse 110px 40px  at 29% 52%,  rgba(200,90,30,0.70)  0%, rgba(200,90,30,0.70)  48%, transparent 49%),
+    /* blue blobs — hard edges like real paint */
+    radial-gradient(ellipse 210px 105px at 88% 18%,  rgba(70,120,215,0.92) 0%, rgba(70,120,215,0.92) 55%, transparent 56%),
+    radial-gradient(ellipse 85px 170px  at 73% 8%,   rgba(45,95,195,0.85)  0%, rgba(45,95,195,0.85)  52%, transparent 53%),
+    radial-gradient(ellipse 150px 75px  at 12% 71%,  rgba(70,120,215,0.90) 0%, rgba(70,120,215,0.90) 54%, transparent 55%),
+    radial-gradient(ellipse 60px 125px  at 24% 88%,  rgba(45,95,195,0.82)  0%, rgba(45,95,195,0.82)  50%, transparent 51%),
+    radial-gradient(ellipse 45px 90px   at 97% 38%,  rgba(70,120,215,0.78) 0%, rgba(70,120,215,0.78) 50%, transparent 51%),
+    radial-gradient(ellipse 105px 50px  at 51% 3%,   rgba(45,95,195,0.75)  0%, rgba(45,95,195,0.75)  48%, transparent 49%),
+    radial-gradient(ellipse 80px 35px   at 38% 43%,  rgba(70,120,215,0.68) 0%, rgba(70,120,215,0.68) 47%, transparent 48%),
     /* base gray */
     #1C1C1C;
 }
@@ -311,8 +313,8 @@ body.home {
 
 .hero__photo-wrap {
   margin: 0 auto 2rem;
-  width: 160px;
-  height: 160px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   overflow: hidden;
   border: 4px solid var(--white);
@@ -707,7 +709,7 @@ body.home {
   .navbar__hamburger { display: flex; }
 
   .hero { padding: 4rem 0 3.5rem; }
-  .hero__photo-wrap { width: 130px; height: 130px; }
+  .hero__photo-wrap { width: 180px; height: 180px; }
 
   .bio-grid {
     grid-template-columns: 1fr;
