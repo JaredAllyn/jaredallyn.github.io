@@ -90,7 +90,7 @@ ul { list-style: none; }
 .navbar__inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2rem 0 0.75rem;
   height: 64px;
   display: flex;
   align-items: center;
@@ -272,8 +272,8 @@ ul { list-style: none; }
    ============================================= */
 footer {
   margin-top: auto;
-  background: #111111;
-  color: var(--gray-400);
+  background: var(--bg-nav);
+  color: var(--gray-600);
   text-align: center;
   padding: 1.6rem 2rem;
   font-size: 0.88rem;
@@ -320,35 +320,39 @@ footer a:hover { opacity: 0.8; }
 }
 
 @keyframes duckieBob {
-  0%, 100% { transform: translateY(-50%); }
-  50%       { transform: translateY(calc(-50% - 6px)); }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
 }
 
 @keyframes quackPop {
-  0%   { transform: scale(0.5); opacity: 0; }
-  60%  { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1);   opacity: 1; }
+  0%   { transform: translateY(-50%) scale(0.5); opacity: 0; }
+  60%  { transform: translateY(-50%) scale(1.1); opacity: 1; }
+  100% { transform: translateY(-50%) scale(1);   opacity: 1; }
 }
 
-.hero__duckie {
+.hero__duck-wrap {
   position: absolute;
   top: 10px;
   right: -8px;
   transform: translateY(-50%);
+  z-index: 10;
+}
+
+.hero__duckie {
+  display: block;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   cursor: pointer;
   animation: duckieBob 2s ease-in-out infinite;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.28));
-  z-index: 10;
 }
 
 .hero__quack {
   position: absolute;
-  top: -10px;
-  left: 28px;
-  transform: scale(0);
-  transform-origin: bottom left;
+  top: 50%;
+  left: calc(100% + 8px);
+  transform: translateY(-50%) scale(0);
+  transform-origin: left center;
   background: #fff;
   border: 2px solid var(--near-black);
   border-radius: 12px;
@@ -709,7 +713,7 @@ footer a:hover { opacity: 0.8; }
 }
 
 .vtimeline-card__title {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--near-black);
   line-height: 1.3;
@@ -717,14 +721,14 @@ footer a:hover { opacity: 0.8; }
 }
 
 .vtimeline-card__org {
-  font-size: 0.67rem;
+  font-size: 0.78rem;
   color: var(--orange);
   font-weight: 600;
   line-height: 1.3;
 }
 
 .vtimeline-card__date {
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   color: var(--gray-400);
   margin-top: 0.25rem;
   line-height: 1.3;

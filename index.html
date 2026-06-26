@@ -11,7 +11,7 @@
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="navbar__inner">
-      <canvas id="flagCanvas" width="120" height="78" style="height:38px;width:59px;image-rendering:pixelated;flex-shrink:0;margin-right:0.5rem;"></canvas><a class="navbar__logo" href="index.html">Jared Allyn</a>
+      <canvas id="flagCanvas" width="240" height="156" style="height:38px;width:59px;flex-shrink:0;margin-right:0.5rem;"></canvas><a class="navbar__logo" href="index.html">Jared Allyn</a>
       <div class="navbar__links">
         <a href="index.html">Home</a>
         <a href="bio.html">Bio</a>
@@ -47,8 +47,10 @@
             Add headshot.jpg to /images
           </div>
         </div>
-        <canvas id="duckCanvas" class="hero__duckie"></canvas>
-        <div class="hero__quack" id="quackBubble">Quack!</div>
+        <div class="hero__duck-wrap">
+          <canvas id="duckCanvas" class="hero__duckie"></canvas>
+          <div class="hero__quack" id="quackBubble">Quack!</div>
+        </div>
       </div>
       <h1 class="hero__name">Jared Allyn</h1>
       <p class="hero__subtitle">
@@ -81,3 +83,4 @@
   <script src="scripts/main.js"></script>
 </body>
 </html>
+
