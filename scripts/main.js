@@ -111,6 +111,68 @@ addBounceToElements('.contact-link-item');
   draw();
 })();
 
+/* ---- Pixel art duck ---- */
+(function setupDuck() {
+  var canvas = document.getElementById('duckCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+
+  /* pixel grid — 0=transparent, 1=yellow, 2=orange, 3=black, 4=dark yellow */
+  var S = 4; /* scale: each pixel = 4x4 screen pixels */
+  var Y = '#FFD800';
+  var O = '#FF8800';
+  var B = '#111111';
+  var D = '#C8A800';
+  var _ = null;
+
+  var grid = [
+    [_,_,_,Y,Y,Y,_,_,_,_],
+    [_,_,Y,Y,Y,Y,Y,_,_,_],
+    [_,_,Y,Y,B,Y,O,O,_,_],
+    [_,_,Y,Y,Y,Y,O,O,_,_],
+    [_,Y,Y,Y,Y,Y,Y,Y,Y,_],
+    [Y,Y,D,D,Y,Y,Y,Y,Y,_],
+    [Y,Y,D,D,Y,Y,Y,Y,Y,_],
+    [_,Y,Y,Y,Y,Y,Y,Y,_,_],
+    [_,_,Y,Y,_,_,Y,Y,_,_],
+    [_,_,O,O,_,_,O,O,_,_],
+    [_,_,O,_,_,_,O,_,_,_],
+  ];
+
+  canvas.width  = grid[0].length * S;
+  canvas.height = grid.length * S;
+
+  grid.forEach(function(row, ry) {
+    row.forEach(function(col, rx) {
+      if (!col) return;
+      ctx.fillStyle = col;
+      ctx.fillRect(rx * S, ry * S, S, S);
+    });
+  });
+
+  /* Quack on hover + click */
+  var bubble = document.getElementById('quackBubble');
+  if (!bubble) return;
+
+  var hideTimer = null;
+
+  function showQuack() {
+    clearTimeout(hideTimer);
+    bubble.classList.remove('show');
+    void bubble.offsetWidth; /* restart animation */
+    bubble.classList.add('show');
+    bubble.style.opacity = '1';
+    bubble.style.transform = '';
+    hideTimer = setTimeout(function() {
+      bubble.style.opacity = '0';
+      bubble.style.transform = 'translateX(-50%) scale(0)';
+    }, 1800);
+  }
+
+  canvas.addEventListener('mouseenter', showQuack);
+  canvas.addEventListener('click', showQuack);
+})();
+
 /* ---- Active nav link highlighting ---- */
 (function highlightActiveNav() {
   var path = window.location.pathname;
