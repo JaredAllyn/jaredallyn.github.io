@@ -43,43 +43,71 @@ addBounceToElements('.contact-link-item');
   });
 })();
 
-/* ---- Pixel art flag animation ---- */
+/* ---- Smooth SVG flag wave animation ---- */
 (function setupFlag() {
   var canvas = document.getElementById('flagCanvas');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
-  var SCALE = 3, FW = 40, FH = 26;
-  var RED = '#CC2936', WHT = '#FFFFFF', BLU = '#002868';
 
-  var px = [];
-  for (var y = 0; y < FH; y++) {
-    px[y] = [];
-    var stripeIdx = Math.floor(y / 2);
-    for (var x = 0; x < FW; x++) {
-      var inCanton = x < 16 && y < 14;
-      px[y][x] = inCanton ? BLU : (stripeIdx % 2 === 0 ? RED : WHT);
-    }
-  }
-  var sixStarX  = [1, 3, 6, 8, 11, 13];
-  var fiveStarX = [2, 5, 7, 10, 12];
-  [1, 3, 5, 7, 9, 11, 13].forEach(function(sy, i) {
-    var xs = i % 2 === 0 ? sixStarX : fiveStarX;
-    xs.forEach(function(sx) { if (sx < 16 && sy < 14) px[sy][sx] = WHT; });
-  });
+  var W = canvas.width, H = canvas.height;
+  var COLS = 80;
+  var RED = '#B22234', WHT = '#FFFFFF', BLU = '#3C3B6E';
+
+  /* stripe heights: 13 stripes, 7 red 6 white */
+  var stripeH = H / 13;
+  /* canton covers top 7 stripes, left 2/5 width */
+  var cantonW = W * 0.4, cantonH = stripeH * 7;
 
   var time = 0;
+
   function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (var x = 0; x < FW; x++) {
-      var wave = Math.sin(x * 0.38 + time) * 1.2;
-      for (var y = 0; y < FH; y++) {
-        ctx.fillStyle = px[y][x];
-        ctx.fillRect(x * SCALE, Math.round(y * SCALE + wave * SCALE), SCALE, SCALE);
+    ctx.clearRect(0, 0, W, H);
+
+    /* draw column slices with wave offset */
+    for (var col = 0; col < COLS; col++) {
+      var x = (col / COLS) * W;
+      var sliceW = W / COLS + 1;
+      /* wave: amplitude grows left→right like a waving flag */
+      var amp = (col / COLS) * 5.5;
+      var waveY = Math.sin(col * 0.22 - time) * amp;
+
+      ctx.save();
+      ctx.translate(0, waveY);
+
+      /* 13 stripes */
+      for (var s = 0; s < 13; s++) {
+        ctx.fillStyle = s % 2 === 0 ? RED : WHT;
+        ctx.fillRect(x, s * stripeH, sliceW, stripeH + 0.5);
       }
+
+      /* canton blue field */
+      if (x < cantonW) {
+        ctx.fillStyle = BLU;
+        ctx.fillRect(x, 0, Math.min(sliceW, cantonW - x), cantonH);
+      }
+
+      ctx.restore();
     }
-    time += 0.03;
+
+    /* stars — drawn on top, unaffected by wave for clarity */
+    ctx.fillStyle = WHT;
+    var rows = [6, 5, 6, 5, 6, 5, 6, 5, 6];
+    var starR = 1.8;
+    rows.forEach(function(count, rowIdx) {
+      var offsetX = count === 5 ? (cantonW / 12) : (cantonW / 24);
+      for (var i = 0; i < count; i++) {
+        var sx = offsetX + i * (cantonW / (count === 6 ? 6 : 5.5));
+        var sy = stripeH * 0.65 + rowIdx * (cantonH / 9.5);
+        ctx.beginPath();
+        ctx.arc(sx, sy, starR, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    time += 0.04;
     requestAnimationFrame(draw);
   }
+
   draw();
 })();
 
