@@ -901,8 +901,16 @@ footer a:hover { opacity: 0.8; }
   box-shadow: 0 10px 32px rgba(255,0,0,0.13);
   border-color: rgba(255,0,0,0.45);
 }
+@keyframes ytGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .yt-card__banner {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d0000 100%);
+  background: linear-gradient(270deg, #1a0000, #3d0000, #1a1a1a, #4a0a0a, #0d0d0d, #2d0000);
+  background-size: 400% 400%;
+  animation: ytGradient 6s ease infinite;
   height: 100px;
   display: flex;
   align-items: center;
