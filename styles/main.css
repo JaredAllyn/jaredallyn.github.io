@@ -26,7 +26,7 @@
   --navy-light:  #243659;
   --bg-base:     #FFFFFF;
   --bg-card:     #F8F8F8;
-  --bg-nav:      #171717;
+  --bg-nav:      #F0F0F0;
   --font:        'DM Sans', sans-serif;
   --radius:      10px;
   --shadow:      0 2px 16px rgba(0,0,0,0.10);
@@ -37,59 +37,12 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 18px;
 }
-
-/*
-  SAVED GRAY BACKGROUND — restore by replacing the body background below:
-  background:
-    radial-gradient(ellipse 190px 95px  at 6%  14%,  rgba(224,123,57,0.92) 0%, rgba(224,123,57,0.92) 55%, transparent 56%),
-    radial-gradient(ellipse 70px 155px  at 17% 9%,   rgba(200,90,30,0.85)  0%, rgba(200,90,30,0.85)  52%, transparent 53%),
-    radial-gradient(ellipse 130px 65px  at 63% 82%,  rgba(224,123,57,0.90) 0%, rgba(224,123,57,0.90) 54%, transparent 55%),
-    radial-gradient(ellipse 55px 110px  at 74% 91%,  rgba(200,90,30,0.82)  0%, rgba(200,90,30,0.82)  50%, transparent 51%),
-    radial-gradient(ellipse 95px 45px   at 42% 96%,  rgba(224,123,57,0.80) 0%, rgba(224,123,57,0.80) 50%, transparent 51%),
-    radial-gradient(ellipse 35px 80px   at 91% 67%,  rgba(224,123,57,0.78) 0%, rgba(224,123,57,0.78) 50%, transparent 51%),
-    radial-gradient(ellipse 110px 40px  at 29% 52%,  rgba(200,90,30,0.70)  0%, rgba(200,90,30,0.70)  48%, transparent 49%),
-    radial-gradient(ellipse 210px 105px at 88% 18%,  rgba(70,120,215,0.92) 0%, rgba(70,120,215,0.92) 55%, transparent 56%),
-    radial-gradient(ellipse 85px 170px  at 73% 8%,   rgba(45,95,195,0.85)  0%, rgba(45,95,195,0.85)  52%, transparent 53%),
-    radial-gradient(ellipse 150px 75px  at 12% 71%,  rgba(70,120,215,0.90) 0%, rgba(70,120,215,0.90) 54%, transparent 55%),
-    radial-gradient(ellipse 60px 125px  at 24% 88%,  rgba(45,95,195,0.82)  0%, rgba(45,95,195,0.82)  50%, transparent 51%),
-    radial-gradient(ellipse 45px 90px   at 97% 38%,  rgba(70,120,215,0.78) 0%, rgba(70,120,215,0.78) 50%, transparent 51%),
-    radial-gradient(ellipse 105px 50px  at 51% 3%,   rgba(45,95,195,0.75)  0%, rgba(45,95,195,0.75)  48%, transparent 49%),
-    radial-gradient(ellipse 80px 35px   at 38% 43%,  rgba(70,120,215,0.68) 0%, rgba(70,120,215,0.68) 47%, transparent 48%),
-    radial-gradient(ellipse 80% 60%  at 15% 20%,  #383838 0%, transparent 70%),
-    radial-gradient(ellipse 60% 80%  at 85% 10%,  #111111 0%, transparent 65%),
-    radial-gradient(ellipse 90% 50%  at 50% 55%,  #333333 0%, transparent 70%),
-    radial-gradient(ellipse 55% 70%  at 90% 75%,  #0e0e0e 0%, transparent 65%),
-    radial-gradient(ellipse 70% 45%  at 10% 85%,  #3a3a3a 0%, transparent 68%),
-    radial-gradient(ellipse 45% 60%  at 65% 30%,  #141414 0%, transparent 62%),
-    radial-gradient(ellipse 60% 40%  at 35% 70%,  #303030 0%, transparent 65%),
-    radial-gradient(ellipse 40% 55%  at 75% 50%,  #121212 0%, transparent 60%),
-    radial-gradient(ellipse 50% 35%  at 25% 45%,  #2e2e2e 0%, transparent 58%),
-    #1C1C1C;
-*/
 
 body {
   font-family: var(--font);
-  background:
-    /* orange paint splatters */
-    radial-gradient(ellipse 190px 95px  at 6%  14%,  rgba(224,123,57,0.92) 0%, rgba(224,123,57,0.92) 55%, transparent 56%),
-    radial-gradient(ellipse 70px 155px  at 17% 9%,   rgba(200,90,30,0.85)  0%, rgba(200,90,30,0.85)  52%, transparent 53%),
-    radial-gradient(ellipse 130px 65px  at 63% 82%,  rgba(224,123,57,0.90) 0%, rgba(224,123,57,0.90) 54%, transparent 55%),
-    radial-gradient(ellipse 55px 110px  at 74% 91%,  rgba(200,90,30,0.82)  0%, rgba(200,90,30,0.82)  50%, transparent 51%),
-    radial-gradient(ellipse 95px 45px   at 42% 96%,  rgba(224,123,57,0.80) 0%, rgba(224,123,57,0.80) 50%, transparent 51%),
-    radial-gradient(ellipse 35px 80px   at 91% 67%,  rgba(224,123,57,0.78) 0%, rgba(224,123,57,0.78) 50%, transparent 51%),
-    radial-gradient(ellipse 110px 40px  at 29% 52%,  rgba(200,90,30,0.70)  0%, rgba(200,90,30,0.70)  48%, transparent 49%),
-    /* blue paint splatters */
-    radial-gradient(ellipse 210px 105px at 88% 18%,  rgba(70,120,215,0.92) 0%, rgba(70,120,215,0.92) 55%, transparent 56%),
-    radial-gradient(ellipse 85px 170px  at 73% 8%,   rgba(45,95,195,0.85)  0%, rgba(45,95,195,0.85)  52%, transparent 53%),
-    radial-gradient(ellipse 150px 75px  at 12% 71%,  rgba(70,120,215,0.90) 0%, rgba(70,120,215,0.90) 54%, transparent 55%),
-    radial-gradient(ellipse 60px 125px  at 24% 88%,  rgba(45,95,195,0.82)  0%, rgba(45,95,195,0.82)  50%, transparent 51%),
-    radial-gradient(ellipse 45px 90px   at 97% 38%,  rgba(70,120,215,0.78) 0%, rgba(70,120,215,0.78) 50%, transparent 51%),
-    radial-gradient(ellipse 105px 50px  at 51% 3%,   rgba(45,95,195,0.75)  0%, rgba(45,95,195,0.75)  48%, transparent 49%),
-    radial-gradient(ellipse 80px 35px   at 38% 43%,  rgba(70,120,215,0.68) 0%, rgba(70,120,215,0.68) 47%, transparent 48%),
-    /* white base */
-    #FFFFFF;
-  background-attachment: fixed;
+  background: #FFFFFF;
   color: var(--near-black);
   line-height: 1.7;
   font-size: 1.08rem;
