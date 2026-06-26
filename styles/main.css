@@ -332,7 +332,7 @@ footer a:hover { opacity: 0.8; }
 
 .hero__duckie {
   position: absolute;
-  top: 22px;
+  top: 10px;
   right: -8px;
   transform: translateY(-50%);
   image-rendering: pixelated;
@@ -554,7 +554,7 @@ footer a:hover { opacity: 0.8; }
    ============================================= */
 .vtimeline {
   position: relative;
-  padding: 2.5rem 0 3rem;
+  padding: 0.75rem 0 3rem;
 }
 
 /* Center vertical line */
@@ -594,7 +594,7 @@ footer a:hover { opacity: 0.8; }
   font-size: 0.8rem;
   color: var(--gray-400);
   font-style: italic;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
   letter-spacing: 0.01em;
 }
 

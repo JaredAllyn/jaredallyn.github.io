@@ -158,12 +158,14 @@ addBounceToElements('.contact-link-item');
 
   function showQuack() {
     clearTimeout(hideTimer);
+    bubble.style.transition = '';
+    bubble.style.opacity = '';
     bubble.classList.remove('show');
     void bubble.offsetWidth;
     bubble.classList.add('show');
     hideTimer = setTimeout(function() {
+      bubble.style.transition = 'opacity 0.6s ease';
       bubble.style.opacity = '0';
-      bubble.style.transform = 'scale(0)';
     }, 1800);
   }
 
