@@ -1,6 +1,6 @@
 # Jared Allyn — Personal Website
 
-Personal professional website for Jared Allyn, Civic Technologist & Policy Communicator.
+Personal professional website for Jared Allyn (me!)
 
 ## Live Site
 
