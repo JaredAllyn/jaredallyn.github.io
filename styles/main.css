@@ -46,9 +46,9 @@ body {
   background-image: repeating-linear-gradient(
     45deg,
     transparent,
-    transparent 28px,
-    rgba(0,0,0,0.018) 28px,
-    rgba(0,0,0,0.018) 29px
+    transparent 24px,
+    rgba(0,0,0,0.045) 24px,
+    rgba(0,0,0,0.045) 25px
   );
   color: var(--near-black);
   line-height: 1.7;
@@ -477,8 +477,8 @@ footer a:hover { opacity: 0.8; }
    ============================================= */
 .vtimeline {
   position: relative;
-  padding-left: 3rem;
-  padding-top: 1rem;
+  padding-left: 9rem;
+  padding-top: 1.5rem;
   padding-bottom: 2rem;
 }
 
@@ -486,79 +486,99 @@ footer a:hover { opacity: 0.8; }
 .vtimeline::before {
   content: '';
   position: absolute;
-  left: 7px;
+  left: 6.8rem;
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--orange) 0%, var(--gray-200) 100%);
+  background: linear-gradient(to bottom, var(--orange) 0%, rgba(224,123,57,0.15) 100%);
   border-radius: 2px;
 }
 
-/* NOW pill at the top */
+/* NOW pill at the top of the line */
 .vtimeline__now {
   position: absolute;
-  left: 0;
-  top: -0.6rem;
+  left: 5.9rem;
+  top: -0.75rem;
   background: var(--orange);
   color: #fff;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0.2rem 0.55rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 100px;
   white-space: nowrap;
+  z-index: 2;
 }
 
 /* Each entry row */
 .vtimeline-entry {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
+}
+
+/* Date label — sits to the LEFT of the line */
+.vtimeline-date {
+  position: absolute;
+  left: -9rem;
+  width: 5.5rem;
+  top: 1.1rem;
+  text-align: right;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  line-height: 1.4;
 }
 
 /* Orange dot on the line */
 .vtimeline-entry::before {
   content: '';
   position: absolute;
-  left: -2.45rem;
-  top: 1.3rem;
+  left: -2.42rem;
+  top: 1.25rem;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background: var(--orange);
   border: 3px solid #fff;
   box-shadow: 0 0 0 2px var(--orange);
+  z-index: 1;
 }
 
-/* Floating bubble card */
+/* ---- Bubble card ---- */
 .vtimeline-card {
-  background: #fff;
-  border: 1px solid var(--gray-200);
-  border-radius: 14px;
-  padding: 1.25rem 1.5rem;
-  box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+  background: linear-gradient(145deg, #ffffff 0%, #f7f9ff 100%);
+  border: 1.5px solid rgba(224,123,57,0.2);
+  border-radius: 32px;
+  padding: 1.2rem 1.6rem;
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.9);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .vtimeline-card:hover {
-  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-  transform: translateX(5px);
+  box-shadow:
+    0 8px 32px rgba(224,123,57,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  transform: translateX(6px);
+  border-color: rgba(224,123,57,0.45);
 }
 
 /* Card header: logo + title block */
 .vtimeline-card__header {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  margin-bottom: 0.6rem;
+  gap: 0.85rem;
+  margin-bottom: 0.55rem;
 }
 
 .vtimeline-card__logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 9px;
-  background: var(--gray-100);
-  border: 1px solid var(--gray-200);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid var(--gray-200);
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
@@ -567,6 +587,7 @@ footer a:hover { opacity: 0.8; }
   font-size: 0.6rem;
   font-weight: 700;
   color: var(--gray-400);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
 
 .vtimeline-card__logo img {
@@ -577,26 +598,23 @@ footer a:hover { opacity: 0.8; }
 }
 
 .vtimeline-card__title {
-  font-size: 1rem;
+  font-size: 0.97rem;
   font-weight: 700;
   color: var(--near-black);
   line-height: 1.3;
 }
 
 .vtimeline-card__org {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--orange);
   font-weight: 600;
   margin-top: 0.1rem;
 }
 
-.vtimeline-card__meta {
-  font-size: 0.8rem;
+.vtimeline-card__location {
+  font-size: 0.78rem;
   color: var(--gray-400);
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.6rem;
 }
 
 .vtimeline-card__bullets {
@@ -605,28 +623,99 @@ footer a:hover { opacity: 0.8; }
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  margin-top: 0.5rem;
 }
 
 .vtimeline-card__bullets li {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--gray-600);
   line-height: 1.6;
 }
 
-/* Certifications section uses same vtimeline but smaller dots */
+/* Certifications — navy accent */
+.vtimeline--certs::before {
+  background: linear-gradient(to bottom, var(--navy) 0%, rgba(45,95,191,0.1) 100%);
+}
+
 .vtimeline--certs .vtimeline-entry::before {
   background: var(--navy);
   box-shadow: 0 0 0 2px var(--navy);
 }
 
-.vtimeline--certs::before {
-  background: linear-gradient(to bottom, var(--navy) 0%, var(--gray-200) 100%);
+.vtimeline--certs .vtimeline-card {
+  border-color: rgba(45,95,191,0.2);
+}
+
+.vtimeline--certs .vtimeline-card:hover {
+  border-color: rgba(45,95,191,0.4);
+  box-shadow: 0 8px 32px rgba(45,95,191,0.14), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.vtimeline--certs .vtimeline-card__org {
+  color: var(--navy);
 }
 
 /* Mobile */
-@media (max-width: 600px) {
-  .vtimeline { padding-left: 2rem; }
+@media (max-width: 640px) {
+  .vtimeline {
+    padding-left: 2.5rem;
+  }
+  .vtimeline::before { left: 7px; }
+  .vtimeline__now { left: 0; }
   .vtimeline-entry::before { left: -1.6rem; }
+  .vtimeline-date { display: none; }
+}
+
+/* =============================================
+   CERTIFICATIONS LIST
+   ============================================= */
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.25rem;
+  background: linear-gradient(145deg, #ffffff, #f7f9ff);
+  border: 1.5px solid rgba(0,0,0,0.07);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.cert-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cert-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 3px;
+}
+
+.cert-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--near-black);
+}
+
+.cert-org {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  margin-top: 0.1rem;
 }
 
 /* =============================================
