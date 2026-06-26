@@ -39,13 +39,15 @@
   <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="container">
-      <div class="hero__photo-wrap" style="position:relative; display:inline-block;">
-        <img id="headshot" src="images/headshot.jpg" alt="Jared Allyn"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="hero__photo-placeholder" style="display:none;">
-          Add headshot.jpg to /images
+      <div class="hero__photo-outer">
+        <div class="hero__photo-wrap">
+          <img id="headshot" src="images/headshot.jpg" alt="Jared Allyn"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="hero__photo-placeholder" style="display:none;">
+            Add headshot.jpg to /images
+          </div>
         </div>
-        <canvas id="duckCanvas" width="40" height="44" class="hero__duckie"></canvas>
+        <canvas id="duckCanvas" class="hero__duckie"></canvas>
         <div class="hero__quack" id="quackBubble">Quack!</div>
       </div>
       <h1 class="hero__name">Jared Allyn</h1>
