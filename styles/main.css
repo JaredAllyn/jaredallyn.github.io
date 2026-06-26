@@ -198,14 +198,14 @@ ul { list-style: none; }
 }
 
 .page-section {
-  padding: 1.5rem 0 5rem;
+  padding: 0.5rem 0 5rem;
 }
 
 .section-title {
   font-size: 2rem;
   font-weight: 700;
   color: var(--near-black);
-  margin-bottom: 3rem;
+  margin-bottom: 1.25rem;
   letter-spacing: -0.03em;
   position: relative;
   display: inline-block;

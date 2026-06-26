@@ -164,7 +164,11 @@ addBounceToElements('.contact-link-item');
     void bubble.offsetWidth;
     bubble.classList.add('show');
     hideTimer = setTimeout(function() {
-      bubble.style.transition = 'opacity 0.6s ease';
+      /* Pin opacity:1 inline so removing .show doesn't snap to 0 */
+      bubble.style.opacity = '1';
+      bubble.classList.remove('show');
+      void bubble.offsetWidth;
+      bubble.style.transition = 'opacity 0.7s ease';
       bubble.style.opacity = '0';
     }, 1800);
   }
