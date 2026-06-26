@@ -908,9 +908,9 @@ footer a:hover { opacity: 0.8; }
 }
 
 .yt-card__banner {
-  background: linear-gradient(270deg, #1a0000, #3d0000, #1a1a1a, #4a0a0a, #0d0d0d, #2d0000);
+  background: linear-gradient(270deg, #111111, #ff0000, #1a1a1a, #ff2200, #0d0d0d, #cc0000);
   background-size: 400% 400%;
-  animation: ytGradient 6s ease infinite;
+  animation: ytGradient 4s ease infinite;
   height: 100px;
   display: flex;
   align-items: center;
