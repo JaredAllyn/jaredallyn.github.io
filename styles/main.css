@@ -496,6 +496,20 @@ footer a:hover { opacity: 0.8; }
 }
 
 /* =============================================
+   NOW CARD ACTIVE VARIANT — index.html
+   ============================================= */
+.now-card--active {
+  background: linear-gradient(145deg, #f0f4fd, #f2f5fe);
+  border: 1.5px solid rgba(60,100,180,0.2);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.now-card--active .now-card__title {
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.01em;
+}
+
+/* =============================================
    STUDIES CARD — index.html
    ============================================= */
 .studies-card {
