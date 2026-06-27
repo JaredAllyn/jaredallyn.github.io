@@ -707,15 +707,15 @@ footer a:hover { opacity: 0.8; }
 
 /* ---- Bubble circle ---- */
 .vtimeline-card {
-  width: 230px;
-  height: 230px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1.4rem;
+  padding: 1.6rem;
   overflow: hidden;
   background: radial-gradient(circle at 38% 30%, rgba(255,255,255,0.98) 0%, rgba(230,241,255,0.88) 100%);
   border: 2px solid rgba(224,123,57,0.25);
@@ -766,7 +766,7 @@ footer a:hover { opacity: 0.8; }
 }
 
 .vtimeline-card__title {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--near-black);
   line-height: 1.3;
@@ -774,14 +774,14 @@ footer a:hover { opacity: 0.8; }
 }
 
 .vtimeline-card__org {
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   color: var(--orange);
   font-weight: 600;
   line-height: 1.3;
 }
 
 .vtimeline-card__date {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   color: var(--gray-400);
   margin-top: 0.25rem;
   line-height: 1.3;
