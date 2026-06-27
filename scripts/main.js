@@ -111,7 +111,7 @@ addBounceToElements('.contact-link-item');
   draw();
 })();
 
-/* ---- Pixel art duck ---- */
+/* ---- Pixel art duck (SAVED — headshot version) ----
 (function setupDuck() {
   var canvas = document.getElementById('duckCanvas');
   if (!canvas) return;
@@ -175,6 +175,125 @@ addBounceToElements('.contact-link-item');
 
   canvas.addEventListener('mouseenter', showQuack);
   canvas.addEventListener('click', showQuack);
+}); */
+
+/* ---- Walking duck across hero ---- */
+(function setupWalkingDuck() {
+  var hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  hero.style.position = 'relative';
+
+  var canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5;';
+  hero.appendChild(canvas);
+  var ctx = canvas.getContext('2d');
+
+  var S = 4;
+  var Y = '#FFD800', O = '#FF8800', B = '#111111', D = '#C8A800', _ = null;
+
+  /* Right-facing, waddle A — left foot forward */
+  var duckRA = [
+    [_,_,_,Y,Y,Y,_,_,_,_],
+    [_,_,Y,Y,Y,Y,Y,_,_,_],
+    [_,_,Y,Y,B,Y,O,O,_,_],
+    [_,_,Y,Y,Y,Y,O,O,_,_],
+    [_,Y,Y,Y,Y,Y,Y,Y,Y,_],
+    [Y,Y,D,D,Y,Y,Y,Y,Y,_],
+    [Y,Y,D,D,Y,Y,Y,Y,Y,_],
+    [_,Y,Y,Y,Y,Y,Y,Y,_,_],
+    [_,_,Y,Y,_,_,Y,_,_,_],
+    [_,_,O,O,_,_,O,_,_,_],
+    [_,O,O,_,_,_,O,O,_,_],
+  ];
+
+  /* Right-facing, waddle B — right foot forward */
+  var duckRB = [
+    [_,_,_,Y,Y,Y,_,_,_,_],
+    [_,_,Y,Y,Y,Y,Y,_,_,_],
+    [_,_,Y,Y,B,Y,O,O,_,_],
+    [_,_,Y,Y,Y,Y,O,O,_,_],
+    [_,Y,Y,Y,Y,Y,Y,Y,Y,_],
+    [Y,Y,D,D,Y,Y,Y,Y,Y,_],
+    [Y,Y,D,D,Y,Y,Y,Y,Y,_],
+    [_,Y,Y,Y,Y,Y,Y,Y,_,_],
+    [_,_,_,Y,_,_,Y,Y,_,_],
+    [_,_,_,O,_,_,O,O,_,_],
+    [_,_,O,O,_,_,_,O,O,_],
+  ];
+
+  /* Front-facing — used near the top of the arc */
+  var duckFwd = [
+    [_,_,Y,Y,Y,Y,_,_],
+    [_,Y,Y,Y,Y,Y,Y,_],
+    [_,Y,B,Y,Y,B,Y,_],
+    [_,Y,Y,O,O,Y,Y,_],
+    [_,Y,Y,O,O,Y,Y,_],
+    [Y,Y,Y,Y,Y,Y,Y,Y],
+    [Y,D,D,Y,Y,D,D,Y],
+    [Y,D,D,Y,Y,D,D,Y],
+    [_,Y,Y,Y,Y,Y,Y,_],
+    [_,O,Y,_,_,Y,O,_],
+    [O,O,_,_,_,_,O,O],
+  ];
+
+  var t = 0;
+  var waddleFrame = 0;
+  var waddleTick = 0;
+
+  function resize() {
+    canvas.width  = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function getPos() {
+    var W = canvas.width, H = canvas.height;
+    var x = W * 0.05 + t * W * 0.90;
+    var y = H * 0.72 - Math.sin(Math.PI * t) * H * 0.64;
+    return { x: x, y: y };
+  }
+
+  function drawGrid(grid, cx, cy) {
+    var cols = grid[0].length, rows = grid.length;
+    var ox = Math.round(cx - cols * S / 2);
+    var oy = Math.round(cy - rows * S / 2);
+    grid.forEach(function(row, ry) {
+      row.forEach(function(cell, rx) {
+        if (!cell) return;
+        ctx.fillStyle = cell;
+        ctx.fillRect(ox + rx * S, oy + ry * S, S, S);
+      });
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    /* waddle toggle */
+    waddleTick++;
+    if (waddleTick >= 14) { waddleFrame = 1 - waddleFrame; waddleTick = 0; }
+
+    var pos = getPos();
+
+    /* sprite selection: front-facing at the top of the arc */
+    var grid;
+    if (t > 0.38 && t < 0.62) {
+      grid = duckFwd;
+    } else {
+      grid = waddleFrame === 0 ? duckRA : duckRB;
+    }
+
+    drawGrid(grid, pos.x, pos.y);
+
+    t += 0.0022;
+    if (t > 1.08) t = 0; /* brief pause at end before looping */
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
 })();
 
 
