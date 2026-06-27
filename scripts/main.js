@@ -250,9 +250,13 @@ if (false) { (function setupDuck() {
 
   function getPos() {
     var W = canvas.width, H = canvas.height;
-    var x = W * 0.05 + t * W * 0.90;
-    var y = H * 0.72 - Math.sin(Math.PI * t) * H * 0.64;
-    return { x: x, y: y };
+    /* base arc: starts/ends at ~78% down, peaks at ~5% (above the headshot) */
+    var baseX = W * 0.05 + t * W * 0.90;
+    var baseY = H * 0.78 - Math.sin(Math.PI * t) * H * 0.73;
+    /* add gentle wobble so the path has organic variation */
+    var wobbleX = Math.sin(t * Math.PI * 3.5) * W * 0.028;
+    var wobbleY = Math.sin(t * Math.PI * 5 + 1.0) * H * 0.035;
+    return { x: baseX + wobbleX, y: baseY + wobbleY };
   }
 
   function drawGrid(grid, cx, cy) {
@@ -287,7 +291,7 @@ if (false) { (function setupDuck() {
 
     drawGrid(grid, pos.x, pos.y);
 
-    t += 0.0022;
+    t += 0.0013;
     if (t > 1.08) t = 0; /* brief pause at end before looping */
 
     requestAnimationFrame(draw);
