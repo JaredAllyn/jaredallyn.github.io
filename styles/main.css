@@ -496,6 +496,44 @@ footer a:hover { opacity: 0.8; }
 }
 
 /* =============================================
+   STUDIES CARD — index.html
+   ============================================= */
+.studies-card {
+  background: linear-gradient(145deg, #fdf8f0, #fef9f2);
+  border: 1.5px solid rgba(180,130,60,0.2);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.studies-card__title {
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.01em;
+}
+
+.studies-section {
+  margin-bottom: 0.85rem;
+}
+
+.studies-section:last-child {
+  margin-bottom: 0;
+}
+
+.studies-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8B5E2A;
+  margin-bottom: 0.2rem;
+  font-family: var(--font);
+}
+
+.studies-item {
+  font-size: 0.93rem;
+  color: #3a2e1e;
+  line-height: 1.5;
+}
+
+/* =============================================
    BIO PAGE — bio.html
    ============================================= */
 .bio-grid {
