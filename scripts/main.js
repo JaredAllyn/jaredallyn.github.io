@@ -111,8 +111,8 @@ addBounceToElements('.contact-link-item');
   draw();
 })();
 
-/* ---- Pixel art duck (SAVED — headshot version) ----
-(function setupDuck() {
+/* ---- Pixel art duck (SAVED — headshot version) ---- */
+if (false) { (function setupDuck() {
   var canvas = document.getElementById('duckCanvas');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
@@ -175,7 +175,7 @@ addBounceToElements('.contact-link-item');
 
   canvas.addEventListener('mouseenter', showQuack);
   canvas.addEventListener('click', showQuack);
-}); */
+})(); }
 
 /* ---- Walking duck across hero ---- */
 (function setupWalkingDuck() {
