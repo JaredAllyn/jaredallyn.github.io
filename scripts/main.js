@@ -177,6 +177,34 @@ addBounceToElements('.contact-link-item');
   canvas.addEventListener('click', showQuack);
 })();
 
+/* ---- Rotating globe emoji ---- */
+(function setupGlobe() {
+  var el = document.getElementById('globeEmoji');
+  if (!el) return;
+  var frames = ['🌍', '🌎', '🌏'];
+  var i = 0;
+  setInterval(function() {
+    i = (i + 1) % frames.length;
+    el.textContent = frames[i];
+  }, 600);
+})();
+
+/* ---- Flipping book emoji ---- */
+(function setupBook() {
+  var el = document.getElementById('bookEmoji');
+  if (!el) return;
+  var open = false;
+  setInterval(function() {
+    el.style.transition = 'transform 0.15s ease';
+    el.style.transform = 'scaleX(0)';
+    setTimeout(function() {
+      open = !open;
+      el.textContent = open ? '📖' : '📚';
+      el.style.transform = 'scaleX(1)';
+    }, 150);
+  }, 900);
+})();
+
 /* ---- Active nav link highlighting ---- */
 (function highlightActiveNav() {
   var path = window.location.pathname;
