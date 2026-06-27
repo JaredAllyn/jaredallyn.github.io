@@ -177,32 +177,97 @@ addBounceToElements('.contact-link-item');
   canvas.addEventListener('click', showQuack);
 })();
 
-/* ---- Rotating globe emoji ---- */
-(function setupGlobe() {
-  var el = document.getElementById('globeEmoji');
-  if (!el) return;
-  var frames = ['🌍', '🌎', '🌏'];
-  var i = 0;
-  setInterval(function() {
-    i = (i + 1) % frames.length;
-    el.textContent = frames[i];
-  }, 600);
-})();
+/* ---- Canvas book page-flip animation ---- */
+(function setupBookCanvas() {
+  var canvas = document.getElementById('bookCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W = 36, H = 26;
+  canvas.width = W; canvas.height = H;
 
-/* ---- Flipping book emoji ---- */
-(function setupBook() {
-  var el = document.getElementById('bookEmoji');
-  if (!el) return;
-  var open = false;
-  setInterval(function() {
-    el.style.transition = 'transform 0.15s ease';
-    el.style.transform = 'scaleX(0)';
-    setTimeout(function() {
-      open = !open;
-      el.textContent = open ? '📖' : '📚';
-      el.style.transform = 'scaleX(1)';
-    }, 150);
-  }, 900);
+  var SPINE_X = W / 2;
+  var SPINE_W = 3;
+  var TOP = 2, BOT = H - 2;
+  var PAGE_W = SPINE_X - SPINE_W / 2 - 2;
+
+  var COVER  = '#C8A87A';
+  var SPINE_C = '#7A4F1E';
+  var PAGE_C  = '#F5EDD8';
+  var LINE_C  = '#D5C9AA';
+
+  var progress = 0; /* 0→1: page sweeps right-to-left, then resets */
+  var paused = 0;   /* frames to wait before next flip */
+
+  function drawStaticBook() {
+    /* left cover */
+    ctx.fillStyle = COVER;
+    ctx.fillRect(1, TOP, SPINE_X - SPINE_W / 2 - 1, BOT - TOP);
+    /* right cover */
+    ctx.fillStyle = COVER;
+    ctx.fillRect(SPINE_X + SPINE_W / 2, TOP, SPINE_X - SPINE_W / 2 - 1, BOT - TOP);
+    /* left page area */
+    ctx.fillStyle = PAGE_C;
+    ctx.fillRect(2, TOP + 1, PAGE_W, BOT - TOP - 2);
+    /* right page area */
+    ctx.fillStyle = PAGE_C;
+    ctx.fillRect(SPINE_X + SPINE_W / 2 + 1, TOP + 1, PAGE_W, BOT - TOP - 2);
+    /* page lines — left */
+    ctx.strokeStyle = LINE_C; ctx.lineWidth = 0.8;
+    for (var i = 0; i < 4; i++) {
+      var ly = TOP + 4 + i * 4;
+      ctx.beginPath(); ctx.moveTo(3, ly); ctx.lineTo(SPINE_X - SPINE_W / 2 - 2, ly); ctx.stroke();
+    }
+    /* page lines — right */
+    for (var i = 0; i < 4; i++) {
+      var ly = TOP + 4 + i * 4;
+      ctx.beginPath(); ctx.moveTo(SPINE_X + SPINE_W / 2 + 2, ly); ctx.lineTo(W - 2, ly); ctx.stroke();
+    }
+    /* spine */
+    ctx.fillStyle = SPINE_C;
+    ctx.fillRect(SPINE_X - SPINE_W / 2, TOP, SPINE_W, BOT - TOP);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    drawStaticBook();
+
+    if (paused > 0) { paused--; requestAnimationFrame(draw); return; }
+
+    /* page sweeps from right edge → spine → left edge using cos */
+    var angle = progress * Math.PI;               /* 0 → π */
+    var farEdge = SPINE_X + Math.cos(angle) * PAGE_W; /* +PAGE_W → 0 → -PAGE_W */
+
+    /* draw flipping page as a filled rect between spine and farEdge */
+    var x1 = Math.min(SPINE_X, farEdge);
+    var x2 = Math.max(SPINE_X, farEdge);
+    if (x2 - x1 > 0.5) {
+      /* base page color — slightly different shade */
+      ctx.fillStyle = progress < 0.5 ? '#EDE4CC' : '#F0EAD8';
+      ctx.fillRect(x1, TOP + 1, x2 - x1, BOT - TOP - 2);
+
+      /* shading gradient to give a curved feel */
+      var grad = ctx.createLinearGradient(x1, 0, x2, 0);
+      if (progress < 0.5) {
+        grad.addColorStop(0, 'rgba(0,0,0,0.12)');
+        grad.addColorStop(1, 'rgba(255,255,255,0.05)');
+      } else {
+        grad.addColorStop(0, 'rgba(255,255,255,0.05)');
+        grad.addColorStop(1, 'rgba(0,0,0,0.12)');
+      }
+      ctx.fillStyle = grad;
+      ctx.fillRect(x1, TOP + 1, x2 - x1, BOT - TOP - 2);
+    }
+
+    /* redraw spine on top so it stays crisp */
+    ctx.fillStyle = SPINE_C;
+    ctx.fillRect(SPINE_X - SPINE_W / 2, TOP, SPINE_W, BOT - TOP);
+
+    progress += 0.012;
+    if (progress >= 1) { progress = 0; paused = 60; } /* pause ~1s between flips */
+
+    requestAnimationFrame(draw);
+  }
+  draw();
 })();
 
 /* ---- Active nav link highlighting ---- */

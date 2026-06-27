@@ -496,6 +496,19 @@ footer a:hover { opacity: 0.8; }
 }
 
 /* =============================================
+   GLOBE SPIN — index.html
+   ============================================= */
+#globeEmoji {
+  display: inline-block;
+  animation: spinGlobe 6s linear infinite;
+}
+
+@keyframes spinGlobe {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* =============================================
    NOW CARD ACTIVE VARIANT — index.html
    ============================================= */
 .now-card--active {
